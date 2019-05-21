@@ -10,8 +10,12 @@ function maxChar(str) {
   let max = 0;
   let maxChar = "";
 
-  for (let i of str) {
-    charMap[i] = charMap[i] + 1 || 1;
+  for (let char of str) {
+    if(charMap[char]){
+      charMap[char]++;
+    } else {
+      charMap[char]=1;
+    }
   }
 
   for (let char in charMap) {
@@ -24,3 +28,7 @@ function maxChar(str) {
 }
 
 module.exports = maxChar;
+
+// for (let i of str) {
+//   charMap[i] = charMap[i] + 1 || 1;
+// }
