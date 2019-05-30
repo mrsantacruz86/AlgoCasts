@@ -3,70 +3,79 @@
 // See 'directions' document
 
 class Node {
-  constructor(data, next = null){
+  constructor(data, next = null) {
     this.data = data;
     this.next = next;
   }
 }
 
 class LinkedList {
-  constructor(){
+  constructor() {
     this.head = null;
   }
 
-  insertFirst(data){
+  insertFirst(data) {
     this.head = new Node(data, this.head);
   }
 
-  size(){
+  size() {
     let counter = 0;
     let node = this.head;
-    while(node){
+    while (node) {
       counter++;
       node = node.next;
     }
     return counter;
   }
 
-  getFirst(){
+  getFirst() {
     return this.head;
   }
-  
-  getLast(){
+
+  getLast() {
     if (!this.head) return null;
 
     let node = this.head;
 
-    while(node){
-      if(!node.next){
+    while (node) {
+      if (!node.next) {
         return node;
       }
       node = node.next;
     }
-    
+
   }
-  
-  clear(){
+
+  clear() {
     this.head = null;
   }
 
-  removeFirst(){
-    if(!this.head) return;
+  removeFirst() {
+    if (!this.head) return;
     this.head = this.head.next;
   }
 
-  removeLast(){
-    if (!this.head) return;
+  removeLast() {
+    //returns if the list is empty
+    if (!this.head) {
+      return;
+    }
+
+    //remove the head if there's only one node 
+    if (!this.head.next) {
+      this.head = null;
+      return;
+    }
 
     let previous = this.head;
-    let node = previous.next;
+    let node = this.head.next;
 
-    while(node){
-      if(!node.next){
-        return node;
-      }
+    while (node.next) {
+      previous = node;
       node = node.next;
     }
+
+    previous.next = null;
   }
 }
 module.exports = { Node, LinkedList };
